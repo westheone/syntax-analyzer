@@ -66,7 +66,7 @@ private:
       {
         c = nextChar();
       }
-      else if ('\n')
+    else if (c == '\n')
       {
         line++;
         c = nextChar();
@@ -126,12 +126,12 @@ public:
       {
         c = nextChar();
         lexem.push_back(c);
-
-        if (lexem == "float")
+      }
+       if (lexem == "float")
         {
           return Token{TokenType::TOKEN_FLOAT, lexem, line};
-        }
-        if (lexem == "int")
+        } 
+         if (lexem == "int")
         {
           return Token{TokenType::TOKEN_INT, lexem, line};
         }
@@ -139,12 +139,11 @@ public:
         {
           return Token{TokenType::TOKEN_STR, lexem, line};
         }
-      }
-      return Token{TokenType::TOKEN_ID, lexem, line};
+       return Token{TokenType::TOKEN_ID, lexem, line};
     }
     else
     {
-      while (!(peekChar() == ' ' || std::isblank(peekChar())))
+    while (cursor < src.length() && !(peekChar() == ' ' || std::isblank(peekChar())))
       {
         lexem += nextChar();
       }
